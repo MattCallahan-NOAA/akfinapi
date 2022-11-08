@@ -1,0 +1,18 @@
+Package: akfinapi
+Type: Package
+Title: Access data from the akfin database by api
+Version: 0.1.0
+Author: Matt Callahan
+Maintainer: <matt.callahan@noaa.gov>
+Description: This package contains functions that pull data from the akfin database via api (webservice).
+    Web services provide data access that is easy to incorporate into code for reproducibility or automation and does not require VPN or network connection. 
+    Web services may or may not require authentication depending on whether the data is confidential. 
+    Web services perform a sql query of the akfin database.
+    AKFIN staff must create the web service initially. 
+    Web service urls consist of a base url, the web service identifier, and parameters. 
+    Modifying parameters changes the sql query, and the data provided.
+License: What license is it under?
+Imports: dplyr, magrittr, httr,
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
