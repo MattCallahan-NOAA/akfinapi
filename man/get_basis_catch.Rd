@@ -5,14 +5,16 @@
 \title{get_basis_catch}
 \usage{
 get_basis_catch(
-  startyear = 2021,
-  endyear = 2021,
-  minlat = 50,
-  maxlat = 80,
+  start_year = 2021,
+  end_year = 2021,
+  min_lat = 50,
+  max_lat = 80,
   tsn
 )
 }
 \arguments{
+\item{tsn}{taxonomic serial number}
+
 \item{startyear}{first year in the time series, default 2021}
 
 \item{endyear}{last year in the time series, default 2021}
@@ -20,11 +22,6 @@ get_basis_catch(
 \item{minlat}{minimum latitude, used to differentiate NBS/SEBS, default 50}
 
 \item{maxlat}{maximum latitude, used to differentiate NBS/SEBS, default 80}
-
-\item{tsn}{taxonomic serial number}
-}
-\value{
-
 }
 \description{
 This function pulls basis survey catch data

@@ -15,36 +15,35 @@
 #'
 #' @examples
 #' ##get catch from 2004
-#' data<-get_basis_catch(startyear=2004, endyear=2004)
+#' data<-get_basis_catch(start_year=2004, end_year=2004)
 #'
 #' ##get catch from 2004 from the NBS
-#' data<-get_basis_catch(startyear=2004, endyear=2004, minlat=60)
+#' data<-get_basis_catch(start_year=2004, end_year=2004, min_lat=60)
 #'
 #' ##Retrieve Pacific cod data from 2004 South of 60 degrees North
 #' #look up tsn from get_tsn function
 #' get_tsn()%>%
 #' filter(commonname=="Pacific Cod")
 #' #pull data
-#' data<-get_basis_catch(startyear=2004, endyear=2004, maxlat=60, tsn=164711)
+#' data<-get_basis_catch(start_year=2004, end_year=2004, max_lat=60, tsn=164711)
 
-get_basis_catch <- function(startyear=2021, endyear=2021, minlat=50, maxlat=80, tsn) {
+get_basis_catch <- function(start_year=2021, end_year=2021, min_lat=50, max_lat=80, tsn) {
   if(missing(tsn)){
+    url<-"https://apex.psmfc.org/akfin/data_marts/akmp/basis_catch_spp_lh_0?"
+    query<-list(start_year=start_year, end_year=end_year, min_lat=min_lat, max_lat=max_lat)
     httr::content(
-      httr::GET(paste0("https://apex.psmfc.org/akfin/data_marts/akmp/basis_catch_spp_lh_0?startyear=",startyear,
-                       "&endyear=",endyear,
-                       "&minlat=",minlat,
-                       "&maxlat=",maxlat)),
+      httr::GET(url=url, query=query),
                 type = "application/json") %>%
       bind_rows()%>%
       rename_with(tolower) }
 
   else {
+    url<-"https://apex.psmfc.org/akfin/data_marts/akmp/basis_catch_spp_lh_0?"
+    tsn<-paste(tsn, collapse=",")
+    query<-list(start_year=start_year, end_year=end_year, min_lat=min_lat, max_lat=max_lat, tsn=tsn)
+
     httr::content(
-      httr::GET(paste0("https://apex.psmfc.org/akfin/data_marts/akmp/basis_catch_spp_lh_0?startyear=",startyear,
-                       "&endyear=",endyear,
-                       "&minlat=",minlat,
-                       "&maxlat=",maxlat,
-                       "&tsn=",tsn)),
+      httr::GET(url=url, query=query),
       type = "application/json") %>%
       bind_rows()%>%
       rename_with(tolower) }
