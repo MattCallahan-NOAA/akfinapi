@@ -13,6 +13,10 @@ devtools::install_github("MattCallahan-NOAA/akfinapi")
 
 Example code
 ``` {r, eval=FALSE}
+library(akfinapi)
+library(httr)
+library(tidyverse)
+
 ## get catch from 2004
 data<-get_basis_catch(start_year=2004, end_year=2004)
 
